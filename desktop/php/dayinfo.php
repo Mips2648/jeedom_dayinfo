@@ -180,9 +180,10 @@ $eqLogics = eqLogic::byType('dayinfo');
           <table id="table_cmd" class="table table-bordered table-condensed">
             <thead>
               <tr>
-                <th style="width: 50px;">ID</th>
-                <th>{{Nom}}</th>
-                <th style="width: 250px;">{{Paramètres}}</th>
+                <th class="hidden-xs" style="min-width:50px;width:70px;">ID</th>
+                <th style="min-width:200px;width:450px;">{{Nom}}</th>
+                <th style="min-width:250px;">{{Options}}</th>
+                <th>{{Etat}}</th>
                 <th style="width: 150px;">{{Actions}}</th>
               </tr>
             </thead>
