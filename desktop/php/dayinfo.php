@@ -191,65 +191,6 @@ $eqLogics = eqLogic::byType('dayinfo');
             </tbody>
           </table>
         </div>
-        <script>
-          $("#selCountry").change(function() {
-            //alert($(.li_eqLogic.active).getAttribute["data-eqLogic_id"]);
-            nodeId = $('.li_eqLogic.active').attr("data-eqLogic_id");
-            $.ajax({ // fonction permettant de faire de l'ajax
-              type: "POST", // méthode de transmission des données au fichier php
-              url: "plugins/dayinfo/core/ajax/dayinfo.ajax.php", // url du fichier php
-              data: {
-                action: "getZones",
-                id: $(this).val(),
-              },
-              dataType: 'json',
-              global: false,
-              error: function(request, status, error) {
-                handleAjaxError(request, status, error);
-              },
-              success: function(data) { // si l'appel a bien fonctionné
-                if (data.state != 'ok') {
-                  $('#div_alert').showAlert({
-                    message: data.result,
-                    level: 'danger'
-                  });
-                  return;
-                }
-                var options = '';
-                for (var i in data.result) {
-                  var value = data.result[i]['value'];
-                  options += '<option value="' + i + '">' + value + '</option>';
-                }
-                $("#selZones").html(options);
-                modifyWithoutSave = false;
-                $.ajax({ // fonction permettant de faire de l'ajax
-                  type: "POST", // méthode de transmission des données au fichier php
-                  url: "plugins/dayinfo/core/ajax/dayinfo.ajax.php", // url du fichier php
-                  data: {
-                    action: "confZone",
-                    id: nodeId,
-                  },
-                  dataType: 'json',
-                  global: false,
-                  error: function(request, status, error) {
-                    handleAjaxError(request, status, error);
-                  },
-                  success: function(data) { // si l'appel a bien fonctionné
-                    if (data.state != 'ok') {
-                      $('#div_alert').showAlert({
-                        message: data.result,
-                        level: 'danger'
-                      });
-                      return;
-                    }
-                    $("#selZones").value(data.result);
-                    modifyWithoutSave = false;
-                  }
-                });
-              }
-            });
-          });
-        </script>
       </div>
     </div>
   </div>
